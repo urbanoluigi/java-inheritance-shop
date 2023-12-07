@@ -13,10 +13,10 @@ public class Prodotto {
     // Costruttore che valorizza il codice con un numero random
     public Prodotto(String nome, String descrizione, double prezzo, double iva) {
         this.codice = generateRandomCode();
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
-        this.iva = iva;
+        setNome(nome);
+        setDescrizione(descrizione);
+        setPrezzo(prezzo);
+        setIva(iva);
     }
 
     // Metodo privato per generare un codice random
@@ -30,12 +30,15 @@ public class Prodotto {
         return codice;
     }
 
-    // Getter e setter per il nome
+    // Getter e setter per il nome con controllo di non vuoto
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il nome non può essere vuoto");
+        }
         this.nome = nome;
     }
 
@@ -48,21 +51,27 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    // Getter e setter per il prezzo
+    // Getter e setter per il prezzo con controllo di non negatività
     public double getPrezzo() {
         return prezzo;
     }
 
     public void setPrezzo(double prezzo) {
+        if (prezzo < 0) {
+            throw new IllegalArgumentException("Il prezzo non può essere negativo");
+        }
         this.prezzo = prezzo;
     }
 
-    // Getter e setter per l'IVA
+    // Getter e setter per l'IVA con controllo di non negatività
     public double getIva() {
         return iva;
     }
 
     public void setIva(double iva) {
+        if (iva < 0) {
+            throw new IllegalArgumentException("L'IVA non può essere negativa");
+        }
         this.iva = iva;
     }
 

@@ -3,9 +3,10 @@ package org.lessons.java.shop;
 import java.util.Scanner;
 
 public class Main {
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+        try {
             // Test della classe Prodotto
             System.out.println("Inserisci nome del prodotto:");
             String nomeProdotto = scanner.nextLine();
@@ -42,7 +43,12 @@ public class Main {
             System.out.println("Categoria creata:");
             System.out.println("Nome: " + categoria.getNome());
             System.out.println("Descrizione: " + categoria.getDescrizione());
-
+        } catch (IllegalArgumentException e) {
+            // Gestione delle eccezioni di tipo IllegalArgumentException
+            System.err.println("Errore: " + e.getMessage());
+        } finally {
+            // Chiudi lo scanner nel blocco finally per garantire la chiusura anche in caso di eccezione
             scanner.close();
         }
     }
+}
